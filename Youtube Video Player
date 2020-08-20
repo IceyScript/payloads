@@ -1,0 +1,46 @@
+// replace link on line 28 with your video
+
+#include <HID-Project.h>
+#include <HID-Settings.h>
+
+// Utility function
+void typeKey(int key){
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+void setup()
+{
+  // Start Keyboard and Mouse
+  AbsoluteMouse.begin();
+  Keyboard.begin();
+
+  // Start Payload
+  delay(600);
+
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(114);
+  Keyboard.releaseAll();
+
+  delay(500);
+
+  Keyboard.print("https://www.youtube.com/watch?v=cufZWIgO1lE");
+
+  typeKey(KEY_RETURN);
+
+  delay(500);
+
+  typeKey(KEY_F11);
+
+  typeKey(KEY_RETURN);
+
+  // End Payload
+
+  // Stop Keyboard and Mouse
+  Keyboard.end();
+  AbsoluteMouse.end();
+}
+
+// Unused
+void loop() {}
